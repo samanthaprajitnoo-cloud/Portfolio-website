@@ -1,0 +1,410 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wingardium Leviosa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a dark, candlelit case study. Hero with floating letters, then storyboard timeline,
+   technique cards, animation principles, and links. Single committed dark look, like the film's night scenes. */
+:root {
+  --bg: #130E20;
+  --surface: #1D1530;
+  --surface-2: #261C3E;
+  --fg: #F3E9D2;
+  --muted: #B7A9D0;
+  --line: #3A2D58;
+  --gold: #E8C76A;
+  --gold-deep: #B8923A;
+  --rose: #E58AA0;
+  --font-display: "Cinzel", Georgia, "Times New Roman", serif;
+  --font-body: "Figtree", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { padding-block: env(safe-area-inset-top, 0px) env(safe-area-inset-bottom, 0px); scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3, p, ul, ol, dl, dd { margin: 0; padding: 0; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; font-weight: 700; }
+ul, ol { list-style: none; }
+.wrap { max-width: 1040px; margin-inline: auto; padding-inline: max(16px, 4vw); }
+.mono { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* top bar */
+.top { border-bottom: 1px solid var(--line); position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 5; }
+.top .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; padding-block: 12px; }
+.top a { text-decoration: none; color: var(--muted); font-size: 0.9375rem; }
+.top a:hover { color: var(--fg); }
+.top .name { font-family: var(--font-display); font-weight: 700; color: var(--fg); letter-spacing: 0.04em; }
+
+/* hero */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line);
+  background: radial-gradient(ellipse at 15% 0%, #3B2A63 0%, rgba(19,14,32,0) 60%), radial-gradient(ellipse at 90% 100%, #2B1A3F 0%, rgba(19,14,32,0) 55%); }
+.hero .wrap { padding-block: clamp(48px, 9vw, 110px); display: grid; gap: 28px; position: relative; }
+.eyebrow { color: var(--gold); }
+.title { display: grid; gap: 0.08em; font-size: clamp(2.75rem, 11vw, 7.5rem); line-height: 0.95; color: var(--gold); letter-spacing: 0.01em; }
+.title .line { display: block; overflow-wrap: anywhere; }
+.title .ch { display: inline-block; animation: lev 4.6s ease-in-out infinite; animation-delay: calc(var(--i) * -0.32s); }
+@keyframes lev { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-0.09em) rotate(-1.5deg); } }
+.lead { max-width: 56ch; font-size: clamp(1.125rem, 2vw, 1.3125rem); color: var(--fg); }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1.5px solid var(--gold); color: var(--gold); transition: background 0.2s, color 0.2s; }
+.btn:hover { background: var(--gold); color: var(--bg); }
+.btn.primary { background: var(--gold); color: var(--bg); }
+.btn.primary:hover { background: var(--fg); border-color: var(--fg); }
+.spark { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: var(--fg); box-shadow: 0 0 12px 4px rgba(232, 199, 106, 0.75); animation: twinkle 3.4s ease-in-out infinite; }
+.sp1 { top: 14%; right: 12%; } .sp2 { top: 38%; right: 28%; animation-delay: -1.1s; } .sp3 { bottom: 20%; right: 8%; animation-delay: -2.2s; } .sp4 { top: 62%; right: 40%; animation-delay: -0.6s; }
+@keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.25); } }
+
+/* facts */
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
+.facts div { padding: 22px 20px 22px 0; min-width: 0; }
+.facts dt { color: var(--muted); }
+.facts dd { margin-top: 6px; font-weight: 500; overflow-wrap: anywhere; }
+@media (max-width: 760px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* sections */
+.block { padding-block: clamp(48px, 7vw, 88px); border-bottom: 1px solid var(--line); }
+.block-head { display: grid; gap: 10px; margin-bottom: 36px; max-width: 62ch; }
+.block-head .mono { color: var(--gold); }
+.block-head h2 { font-size: clamp(1.875rem, 5vw, 3rem); line-height: 1.08; letter-spacing: 0.01em; }
+.block-head p { color: var(--muted); }
+
+/* why */
+.why { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+@media (max-width: 860px) { .why { grid-template-columns: minmax(0, 1fr); } }
+.why p { max-width: 58ch; }
+.why p + p { margin-top: 16px; }
+.source { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 8px 22px; }
+.source li { padding-block: 16px; border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
+.source li:last-child { border-bottom: 0; }
+.source .mono { color: var(--muted); }
+.source a { color: var(--gold); text-decoration-thickness: 1px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+
+/* references */
+.refs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 8px; }
+@media (max-width: 860px) { .refs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ref { display: grid; gap: 10px; align-content: space-between; min-height: 120px; padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-decoration: none; transition: transform 0.25s ease, border-color 0.25s ease; }
+.ref:hover { transform: translateY(-4px); border-color: var(--gold); }
+.ref .n { font-family: var(--font-display); font-size: 1.75rem; color: var(--gold); line-height: 1; }
+.ref .mono { color: var(--muted); }
+.ref-label { margin-top: 36px; color: var(--muted); }
+
+/* storyboard timeline */
+.beats { display: grid; border-top: 1.5px solid var(--gold); }
+.beat { display: grid; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1.4fr); gap: 8px 28px; padding-block: 20px; border-bottom: 1px solid var(--line); align-items: baseline; }
+.beat .t { font-family: var(--font-display); font-size: 1.5rem; color: var(--gold); line-height: 1; font-variant-numeric: tabular-nums; }
+.beat h3 { font-size: 1.125rem; letter-spacing: 0.01em; }
+.beat p { color: var(--muted); }
+@media (max-width: 760px) { .beat { grid-template-columns: 44px minmax(0, 1fr); } .beat p { grid-column: 2; } }
+.note { margin-top: 24px; color: var(--muted); font-size: 0.9375rem; }
+
+/* technique cards */
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 980px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .cards { grid-template-columns: minmax(0, 1fr); } }
+.tcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 12px; align-content: start; min-width: 0; transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease; }
+.tcard:hover { transform: translateY(-4px) scale(1.015); border-color: var(--gold-deep); background: var(--surface-2); }
+.tcard .mono { color: var(--gold); }
+.tcard h3 { font-size: 1.1875rem; line-height: 1.2; letter-spacing: 0.01em; }
+.tcard p { color: var(--muted); font-size: 1rem; }
+.tcard code { font-family: var(--font-mono); font-size: 0.8125rem; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 1px 7px; color: var(--fg); white-space: nowrap; }
+
+/* the R */
+.r-demo { margin-top: 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+@media (max-width: 760px) { .r-demo { grid-template-columns: minmax(0, 1fr); } }
+.r-stage { display: flex; align-items: baseline; justify-content: center; gap: 0.05em; padding: 36px 20px; font-family: var(--font-display); font-weight: 700; font-size: clamp(2.25rem, 7vw, 4rem); color: var(--gold); background: radial-gradient(ellipse at 50% 30%, #3B2A63 0%, var(--surface) 70%); min-height: 220px; flex-wrap: wrap; }
+.r-stage .bad { color: var(--rose); display: inline-block; transform-origin: 50% 70%; animation: pop 3.6s cubic-bezier(.2,.8,.2,1) infinite; }
+@keyframes pop { 0% { transform: scale(0) rotate(97deg); } 25% { transform: scale(1.5) rotate(-8deg); } 38% { transform: scale(1.3) rotate(1.1deg); } 85% { transform: scale(1.3) rotate(1.1deg); } 100% { transform: scale(1.3) rotate(1.1deg); } }
+.r-copy { padding: clamp(22px, 4vw, 36px); display: grid; gap: 12px; align-content: center; }
+.r-copy h3 { font-size: 1.375rem; }
+.r-copy p { color: var(--muted); }
+.r-copy .vals { display: flex; flex-wrap: wrap; gap: 8px; }
+.r-copy .vals span { font-family: var(--font-mono); font-size: 0.75rem; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; color: var(--fg); }
+
+/* principles */
+.principles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; border-top: 1.5px solid var(--gold); }
+@media (max-width: 760px) { .principles { grid-template-columns: minmax(0, 1fr); } }
+.principles li { padding-block: 22px; border-bottom: 1px solid var(--line); display: grid; gap: 6px; min-width: 0; }
+.principles h3 { font-size: 1.25rem; letter-spacing: 0.01em; }
+.principles p { color: var(--muted); }
+
+/* craft */
+.craft { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 860px) { .craft { grid-template-columns: minmax(0, 1fr); } }
+.fontcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 10px; min-width: 0; }
+.fontcard .mono { color: var(--muted); }
+.fontcard .spec { font-size: 2.75rem; line-height: 1.05; color: var(--gold); overflow-wrap: anywhere; }
+.fontcard .spec.cinzel { font-family: var(--font-display); font-weight: 700; }
+.fontcard .spec.silent { font-family: Georgia, serif; font-style: italic; }
+.fontcard a { color: var(--gold); text-underline-offset: 3px; }
+.fontcard p { color: var(--muted); }
+
+/* links */
+.links { display: grid; gap: 0; border-top: 1.5px solid var(--gold); }
+.links a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; padding-block: 20px; border-bottom: 1px solid var(--line); text-decoration: none; align-items: center; transition: padding-left 0.25s ease, color 0.25s ease; }
+.links a:hover { padding-left: 14px; color: var(--gold); }
+.links .t { font-family: var(--font-display); font-size: 1.375rem; font-weight: 700; }
+.links .d { color: var(--muted); font-size: 0.9375rem; display: block; font-family: var(--font-body); font-weight: 400; }
+.links .go { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+
+.foot { padding-block: 40px 64px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .title .ch, .spark, .r-stage .bad { animation: none; }
+  .r-stage .bad { transform: scale(1.3) rotate(1.1deg); }
+  .ref, .tcard, .btn, .links a { transition: none; }
+  .ref:hover, .tcard:hover { transform: none; }
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="name" href="index.html">Samantha Prajitno</a>
+    <a href="index.html#work">&larr; Back to portfolio</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="t">
+    <i class="spark sp1"></i><i class="spark sp2"></i><i class="spark sp3"></i><i class="spark sp4"></i>
+    <div class="wrap">
+      <p class="mono eyebrow">Motion design &middot; Kinetic typography</p>
+      <h1 class="title" id="t" aria-label="Wingardium Leviosa">
+        <span class="line" aria-hidden="true" data-text="Wingardium"></span>
+        <span class="line" aria-hidden="true" data-text="Leviosa"></span>
+      </h1>
+      <p class="lead">An animated recreation of the levitation lesson from my all-time favorite movie. Every word moves the way the scene sounds: with swish, flick and a very stubborn feather.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://drive.google.com/file/d/1CaLh64mUDzwJGTx-mTi2Hp5_z4nO6LU8/view?usp=sharing" target="_blank" rel="noopener">Watch the video</a>
+        <a class="btn" href="#process">See how it was made</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <dl class="facts">
+      <div><dt class="mono">Type</dt><dd>Kinetic typography</dd></div>
+      <div><dt class="mono">Main tool</dt><dd>Adobe After Effects</dd></div>
+      <div><dt class="mono">Artwork</dt><dd>Hand drawn on iPad in ibisPaint</dd></div>
+      <div><dt class="mono">Typefaces</dt><dd>Cinzel Bold, Silent Forest</dd></div>
+    </dl>
+  </div>
+
+  <section class="block" aria-labelledby="why-h">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="mono">The scene</p>
+        <h2 id="why-h">Why this scene</h2>
+      </div>
+      <div class="why">
+        <div>
+          <p>Harry Potter is my all-time favorite movie, and this classroom scene is one of the funniest. A teacher walks the class through levitation: the wrist movement, the swish and flick, the careful way to say the spell. Then one student corrects another, gets challenged to do it better, and gets it right.</p>
+          <p>That sequence is mostly about how words are said, so it suits typography. The animation puts the emphasis, the mistake and the stubbornness on the screen as moving text.</p>
+        </div>
+        <ul class="source">
+          <li><span class="mono">Scene source</span><a href="https://www.youtube.com/watch?v=NRo141kp2qg" target="_blank" rel="noopener">Text and audio on YouTube</a></li>
+          <li><span class="mono">Music</span><a href="https://www.youtube.com/watch?v=wtHra9tFISY&amp;list=RDwtHra9tFISY&amp;start_radio=1" target="_blank" rel="noopener">Audio track on YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="ref-h">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="mono">Research</p>
+        <h2 id="ref-h">Inspiration</h2>
+        <p>Four kinetic typography pieces I studied before drawing the storyboard.</p>
+      </div>
+      <div class="refs">
+        <a class="ref" href="https://www.youtube.com/watch?v=_PU49-_qQoI" target="_blank" rel="noopener"><span class="n">I</span><span class="mono">Watch reference &#8599;</span></a>
+        <a class="ref" href="https://www.youtube.com/watch?v=uJdiCSoqS9Y" target="_blank" rel="noopener"><span class="n">II</span><span class="mono">Watch reference &#8599;</span></a>
+        <a class="ref" href="https://www.youtube.com/watch?v=9MypzSkLszE" target="_blank" rel="noopener"><span class="n">III</span><span class="mono">Watch reference &#8599;</span></a>
+        <a class="ref" href="https://www.youtube.com/watch?v=VMyUqDP7lTA&amp;list=RDVMyUqDP7lTA&amp;start_radio=1" target="_blank" rel="noopener"><span class="n">IV</span><span class="mono">Watch reference &#8599;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="sb-h">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="mono">Storyboard</p>
+        <h2 id="sb-h">Planning each beat</h2>
+        <p>Before opening After Effects I planned one motion idea for every line of the scene. They run in the order they appear in the video.</p>
+      </div>
+      <ol class="beats">
+        <li class="beat"><span class="t">1</span><h3>Opening</h3><p>A fade-in for a smooth start.</p></li>
+        <li class="beat"><span class="t">2</span><h3>Text from the wand</h3><p>The words slide out of the wand so they look like magic.</p></li>
+        <li class="beat"><span class="t">3</span><h3>Wrist movement</h3><p>A hand holding a wand moves together with the text, matching the line about wrist movement.</p></li>
+        <li class="beat"><span class="t">4</span><h3>The wand reveals</h3><p>The wand moves down and uncovers the text, guiding the audience to where they should look.</p></li>
+        <li class="beat"><span class="t">5</span><h3>Swish and flick</h3><p>A glowing effect, with magical particles fading in and out.</p></li>
+        <li class="beat"><span class="t">6</span><h3>"Besides, you're saying it wrong"</h3><p>The word "wrong" gets crossed out for a stronger visual effect.</p></li>
+        <li class="beat"><span class="t">7</span><h3>"It's Leviosa"</h3><p>A zoom-in between the letters stresses the pronunciation.</p></li>
+        <li class="beat"><span class="t">8</span><h3>The mispronunciation</h3><p>A slide-in translation, with the "SAR" part underlined to point out the mistake.</p></li>
+        <li class="beat"><span class="t">9</span><h3>"You do it then!"</h3><p>A background color change, plus pop-up and slide transitions so each word lands clearly.</p></li>
+        <li class="beat"><span class="t">10</span><h3>Stubbornness</h3><p>A pop-and-zoom on the text to show the stubborn attitude.</p></li>
+        <li class="beat"><span class="t">11</span><h3>The feather</h3><p>A split-slide layout, like reading a book, while the feather starts to fly.</p></li>
+        <li class="beat"><span class="t">12</span><h3>Close</h3><p>A fade-out to end the sequence smoothly.</p></li>
+      </ol>
+      <p class="note">The storyboard sketches and the prototype are in the Google Drive folder linked at the bottom of this page.</p>
+    </div>
+  </section>
+
+  <section class="block" id="process" aria-labelledby="pr-h">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="mono">Step by step</p>
+        <h2 id="pr-h">Building it in After Effects</h2>
+        <p>The main techniques behind the motion, with the settings I used.</p>
+      </div>
+      <div class="cards">
+        <article class="tcard">
+          <p class="mono">Setup</p>
+          <h3>Sound, background and the first zoom</h3>
+          <p>I attached the audio first, then added a rectangle shape as the background. After placing the video, a scale animation zooms out and transitions into a new background.</p>
+        </article>
+        <article class="tcard">
+          <p class="mono">Title</p>
+          <h3>Blur, flicker and evaporate</h3>
+          <p>The title uses a Gaussian Blur so it fades away when it's no longer needed, with a flicker-in and an evaporate-out text animator. I adjusted scale and opacity to finish it.</p>
+        </article>
+        <article class="tcard">
+          <p class="mono">Transitions</p>
+          <h3>Circle wipes</h3>
+          <p>To move between slides I used a circle shape that scales, so each scene zooms out into the next. It builds a little anticipation for what comes after.</p>
+        </article>
+        <article class="tcard">
+          <p class="mono">Text animators</p>
+          <h3>Range Selector in motion</h3>
+          <p>Most lines slide in with a Range Selector. <code>Start</code> goes from 0% to 100%, and <code>Offset</code> goes from -100% to 100%. "Don't forget" uses an <code>End</code> keyframe from 0% to 87%.</p>
+        </article>
+        <article class="tcard">
+          <p class="mono">Camera</p>
+          <h3>Depth for "Swish and Flick"</h3>
+          <p>I added a camera through a new solid layer and animated only its position, from <code>962, 515, -2610.67</code> to <code>-962, 515, -2897.66</code>. The "Swish and Flick" layer is copied and repeated.</p>
+        </article>
+        <article class="tcard">
+          <p class="mono">Echo</p>
+          <h3>Repeating the spell</h3>
+          <p>"Wingardium Leviosa" repeats with scale and opacity keyframes to give an echo. I copied the layer and offset it in time, then added a slide, a Gaussian Blur of 81.4 and an opacity change.</p>
+        </article>
+        <article class="tcard">
+          <p class="mono">Hand and wand</p>
+          <h3>Rotation that feels natural</h3>
+          <p>The hand and wand move up and down using position and rotation keyframes. Several keyframes at different angles make the motion feel less mechanical.</p>
+        </article>
+        <article class="tcard">
+          <p class="mono">Emphasis</p>
+          <h3>STOP, the eye and the crossed-out word</h3>
+          <p>"STOP!" is a copied layer with a shape layer behind it for a different color, scaled for a zoom. "Someone's eye out" slides in with an eye element added on a position keyframe. "Wrong" gets a line shape drawn with Trim Paths, End from 0% to 100%.</p>
+        </article>
+        <article class="tcard">
+          <p class="mono">Finish</p>
+          <h3>Blur Fade In and the feather</h3>
+          <p>"Leviosa" uses an Effects &gt; Blur Fade In with a slider keyframe at 100, and the wrong version gets the same treatment. The feather follows a tutorial and is the last piece of the animation.</p>
+        </article>
+      </div>
+
+      <div class="r-demo">
+        <div class="r-stage" role="img" aria-label="Animated sample of the letter R popping in beside the word Leviosa">
+          <span>Leviosa</span><span class="bad">R</span>
+        </div>
+        <div class="r-copy">
+          <p class="mono" style="color: var(--gold)">The detail I like most</p>
+          <h3>The distorted "R"</h3>
+          <p>In the scene a student pronounces the spell wrong, so I gave the extra letter its own animation. It pops in much bigger than the text around it and wobbles to a stop.</p>
+          <div class="vals"><span>Scale 0% &rarr; 246.419%</span><span>Rotation 97.0&deg; &rarr; 1.1&deg;</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="pn-h">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="mono">Why it feels right</p>
+        <h2 id="pn-h">Animation principles</h2>
+      </div>
+      <ul class="principles">
+        <li><h3>Slow in and slow out</h3><p>Several keyframes on the hand movement make it accelerate and settle naturally, so it looks smoother and more appealing.</p></li>
+        <li><h3>Anticipation</h3><p>Zooming through a circle into each new background tells the viewer something is about to happen.</p></li>
+        <li><h3>Timing and spacing</h3><p>Staggered keyframes control how fast or slow each line appears. The spacing gives a playful, magical rhythm that matches the scene.</p></li>
+        <li><h3>Follow through</h3><p>The scale and rotation of the distorted "R" continue slightly past the main motion before settling.</p></li>
+        <li><h3>Color</h3><p>Soft, dark tones in the backgrounds reduce distraction and keep the text easy to read.</p></li>
+        <li><h3>Exaggeration</h3><p>Pushing the key moments makes the comedy stronger and helps the audience see the mistake and enjoy it.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="cr-h">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="mono">Materials</p>
+        <h2 id="cr-h">Drawn by hand, set in two typefaces</h2>
+        <p>Every element was drawn in ibisPaint on an iPad. For the hand I used a picture of a hand holding a wand.</p>
+      </div>
+      <div class="craft">
+        <div class="fontcard">
+          <p class="mono">Typeface</p>
+          <p class="spec cinzel">Cinzel Bold</p>
+          <p>Classical capitals with a ceremonial feel.</p>
+          <a href="https://www.dafont.com/cinzel.font" target="_blank" rel="noopener">Get the font &#8599;</a>
+        </div>
+        <div class="fontcard">
+          <p class="mono">Typeface</p>
+          <p class="spec silent">Silent Forest</p>
+          <p>A second face for the storybook moments.</p>
+          <a href="https://www.dafont.com/silent-forest-2.font" target="_blank" rel="noopener">Get the font &#8599;</a>
+        </div>
+        <div class="fontcard">
+          <p class="mono">Elements</p>
+          <p class="spec cinzel">Wand &amp; hand</p>
+          <p>Drawn in ibisPaint, animated with rotation and position keyframes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="ln-h">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="mono">Files</p>
+        <h2 id="ln-h">Watch and explore</h2>
+      </div>
+      <div class="links">
+        <a href="https://drive.google.com/file/d/1CaLh64mUDzwJGTx-mTi2Hp5_z4nO6LU8/view?usp=sharing" target="_blank" rel="noopener"><span class="t">Final video<span class="d">The finished animation</span></span><span class="go">Open &#8599;</span></a>
+        <a href="https://drive.google.com/file/d/1F-j_XAnJPgCIWPAPzeC4Mxtz73YHxQH5/view?usp=sharing" target="_blank" rel="noopener"><span class="t">Prototype<span class="d">The first version, from the storyboard</span></span><span class="go">Open &#8599;</span></a>
+        <a href="https://drive.google.com/drive/folders/179u8hsHZ8aov03H-PpAFjozz3xzuDM_t?usp=sharing" target="_blank" rel="noopener"><span class="t">Google Drive folder<span class="d">Storyboard, color theme and project files</span></span><span class="go">Open &#8599;</span></a>
+      </div>
+      <div class="foot">
+        <a class="btn" href="index.html#work">&larr; Back to portfolio</a>
+        <a class="btn primary" href="index.html#contact">Contact me</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  // Split the title into letters so each one can float on its own delay.
+  var i = 0;
+  document.querySelectorAll('.title .line').forEach(function (line) {
+    var text = line.getAttribute('data-text');
+    var frag = document.createDocumentFragment();
+    text.split('').forEach(function (c) {
+      var s = document.createElement('span');
+      s.className = 'ch';
+      s.style.setProperty('--i', i++);
+      s.textContent = c;
+      frag.appendChild(s);
+    });
+    line.appendChild(frag);
+  });
+})();
+</script>

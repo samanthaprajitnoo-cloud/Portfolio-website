@@ -1,0 +1,439 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Samantha Prajitno Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Cinzel:wght@600;700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one long studio page. Hero name set huge, with the role boxed like a selected Figma frame.
+   Work as four case cards, skills as layer-panel columns, experience and education as dated ledgers. */
+:root {
+  --bg: #FFF7F6;
+  --surface: #FFFFFF;
+  --fg: #1F1719;
+  --muted: #6B5D61;
+  --line: #EBD9DA;
+  --pink: #FF9A9F;
+  --pink-ink: #B8304D;
+  --on-pink: #2B0E15;
+  --deep: #4A1F2E;
+  --on-deep: #FFE9EB;
+
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Figtree", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161012;
+    --surface: #211819;
+    --fg: #F7EBEC;
+    --muted: #B8A5A9;
+    --line: #3A2B2F;
+    --pink: #FF9A9F;
+    --pink-ink: #FF9FA5;
+    --on-pink: #2B0E15;
+    --deep: #6A2E42;
+    --on-deep: #FFE9EB;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161012;
+  --surface: #211819;
+  --fg: #F7EBEC;
+  --muted: #B8A5A9;
+  --line: #3A2B2F;
+  --pink: #FF9A9F;
+  --pink-ink: #FF9FA5;
+  --on-pink: #2B0E15;
+  --deep: #6A2E42;
+  --on-deep: #FFE9EB;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--pink-ink); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+.wrap { max-width: 1120px; margin-inline: auto; padding-inline: max(16px, 4vw); }
+.mono { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Nav */
+.nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.nav-name { font-family: var(--font-display); font-weight: 700; text-decoration: none; letter-spacing: -0.01em; }
+.nav-links { display: flex; align-items: center; gap: 22px; }
+.nav-links a { text-decoration: none; color: var(--muted); font-size: 0.9375rem; }
+.nav-links a:hover { color: var(--fg); }
+.toggle {
+  font: inherit; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase;
+  background: none; color: var(--fg); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer;
+}
+.toggle:hover { border-color: var(--pink-ink); }
+@media (max-width: 640px) { .nav-links a { display: none; } }
+
+/* Hero */
+.hero { padding-block: clamp(40px, 8vw, 88px) clamp(40px, 6vw, 64px); display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+.hero-top { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+.eyebrow { color: var(--muted); }
+.name {
+  font-weight: 800;
+  font-size: clamp(3.25rem, 12.5vw, 9rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  font-variation-settings: "opsz" 96;
+}
+.role-wrap { position: relative; align-self: flex-start; padding-bottom: 6px; }
+.role {
+  position: relative;
+  display: inline-block;
+  border: 1.5px solid var(--pink-ink);
+  padding: 8px 20px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  letter-spacing: -0.01em;
+  background: var(--pink);
+  color: var(--on-pink);
+}
+.handle { position: absolute; width: 9px; height: 9px; background: var(--surface); border: 1.5px solid var(--pink-ink); }
+.handle.tl { top: -5.5px; left: -5.5px; }
+.handle.tr { top: -5.5px; right: -5.5px; }
+.handle.bl { bottom: -5.5px; left: -5.5px; }
+.handle.br { bottom: -5.5px; right: -5.5px; }
+.size-tag {
+  position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+  background: var(--pink-ink); color: var(--bg);
+  font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.04em;
+  padding: 2px 8px; border-radius: 4px; white-space: nowrap;
+}
+.lede { max-width: 56ch; font-size: clamp(1.125rem, 2vw, 1.3125rem); color: var(--fg); }
+
+.hero-bottom { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: start; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem;
+  border: 1.5px solid var(--fg); color: var(--fg); background: transparent; cursor: pointer; font-family: var(--font-body);
+}
+.btn.primary { background: var(--fg); color: var(--bg); }
+.btn:hover { border-color: var(--pink-ink); }
+.btn.primary:hover { background: var(--pink-ink); color: var(--bg); }
+.now { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; display: grid; gap: 14px; min-width: 0; }
+.now h2 { font-size: 0.75rem; font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.now dl { margin: 0; display: grid; gap: 12px; }
+.now dt { color: var(--muted); font-size: 0.875rem; }
+.now dd { margin: 0; font-weight: 500; }
+@media (min-width: 860px) { .hero-bottom { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 48px; } }
+
+/* Sections */
+.section { padding-block: clamp(48px, 7vw, 88px); border-top: 1px solid var(--line); }
+.section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: 36px; }
+.section-head h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
+.section-head .mono { color: var(--muted); }
+
+/* Work */
+.work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+@media (max-width: 860px) { .work-grid { grid-template-columns: minmax(0, 1fr); } }
+a.card.link { text-decoration: none; color: inherit; transition: border-color 0.15s ease, transform 0.15s ease; }
+a.card.link:hover { border-color: var(--pink-ink); transform: translateY(-3px); }
+.open { color: var(--pink-ink); margin-top: 4px; }
+.slot { border: 1.5px dashed var(--line); border-radius: 14px; min-height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: var(--muted); }
+.slot .plus { font-family: var(--font-display); font-size: 2rem; line-height: 1; }
+@media (prefers-reduced-motion: reduce) { a.card.link { transition: none; } a.card.link:hover { transform: none; } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.thumb { aspect-ratio: 16 / 10; max-width: 100%; position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.card-body { padding: 22px 24px 26px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.card-body .mono { color: var(--muted); }
+.card h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.015em; line-height: 1.15; }
+.card p { color: var(--muted); font-size: 1rem; }
+.result { display: inline-flex; align-self: start; background: var(--pink); color: var(--on-pink); font-weight: 600; font-size: 0.9375rem; padding: 4px 12px; border-radius: 999px; }
+
+/* thumbnail 1: patchwork textile */
+.t-patch { background: var(--line); display: grid; grid-template-columns: 1.3fr 1fr 0.8fr; grid-template-rows: 1fr 1fr; gap: 6px; padding: 18px; }
+.t-patch span { border-radius: 4px; border: 1.5px dashed var(--fg); opacity: 0.9; }
+.t-patch span:nth-child(1) { background: var(--pink); grid-row: span 2; }
+.t-patch span:nth-child(2) { background: var(--deep); border-color: var(--on-deep); }
+.t-patch span:nth-child(3) { background: var(--surface); }
+.t-patch span:nth-child(4) { background: var(--surface); }
+.t-patch span:nth-child(5) { background: var(--pink); }
+
+/* Skills */
+.layers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+@media (max-width: 860px) { .layers { grid-template-columns: minmax(0, 1fr); } }
+.panel h3 { font-size: 0.75rem; font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; padding-bottom: 12px; border-bottom: 1.5px solid var(--fg); }
+.panel li { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.panel li::before { content: ""; flex: none; width: 12px; height: 12px; border-radius: 2px; background: var(--pink); border: 1px solid var(--pink-ink); }
+.tools { margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; }
+.tools .mono { color: var(--muted); margin-right: 6px; }
+.chip { border: 1.5px solid var(--fg); border-radius: 999px; padding: 6px 16px; font-weight: 500; font-size: 0.9375rem; }
+
+/* Ledger rows (experience, education) */
+.ledger { display: grid; }
+.row { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 8px 40px; padding-block: 28px; border-top: 1px solid var(--line); }
+.row:first-child { border-top: 1.5px solid var(--fg); }
+.row .when { color: var(--muted); font-variant-numeric: tabular-nums; }
+.row .tag { display: inline-block; margin-top: 8px; color: var(--pink-ink); }
+.row h3 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.012em; line-height: 1.2; }
+.row .org { color: var(--muted); font-weight: 500; margin-top: 2px; }
+.row ul { margin-top: 12px; display: grid; gap: 8px; max-width: 68ch; }
+.row li { padding-left: 18px; position: relative; }
+.row li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 2px; background: var(--pink-ink); }
+@media (max-width: 700px) { .row { grid-template-columns: minmax(0, 1fr); } }
+
+/* Contact */
+.contact h2 { font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 800; letter-spacing: -0.035em; line-height: 0.95; max-width: 14ch; }
+.contact-list { margin-top: 40px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; max-width: 860px; }
+@media (max-width: 700px) { .contact-list { grid-template-columns: minmax(0, 1fr); } }
+.contact-list li { padding: 16px 0; border-top: 1px solid var(--line); display: grid; gap: 4px; min-width: 0; }
+.contact-list .mono { color: var(--muted); }
+.contact-list .val { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-weight: 500; overflow-wrap: anywhere; }
+.copy { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; background: none; color: var(--pink-ink); border: 1px solid var(--line); border-radius: 6px; padding: 3px 9px; cursor: pointer; }
+.copy:hover { border-color: var(--pink-ink); }
+.foot { padding-block: 32px 48px; border-top: 1px solid var(--line); color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 0.9375rem; }
+
+
+/* About */
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+@media (max-width: 860px) { .about-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
+.about-text { display: grid; gap: 18px; font-size: clamp(1.125rem, 2vw, 1.3125rem); max-width: 56ch; }
+.facts-box { margin: 0; display: grid; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 8px 22px; min-width: 0; }
+.facts-box div { padding-block: 14px; border-bottom: 1px solid var(--line); }
+.facts-box div:last-child { border-bottom: 0; }
+.facts-box dt { color: var(--muted); }
+.facts-box dd { margin: 4px 0 0; font-weight: 500; }
+
+/* Project box */
+.project {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  background: #1A1328; color: #F3E9D2; border-radius: 18px; overflow: hidden; text-decoration: none;
+  border: 1px solid #3A2B55;
+  transition: transform 0.35s cubic-bezier(.2,.7,.2,1), box-shadow 0.35s ease;
+}
+.project:hover, .project:focus-visible { transform: scale(1.035); box-shadow: 0 24px 60px -20px rgba(120, 60, 160, 0.55); }
+@media (max-width: 760px) { .project { grid-template-columns: minmax(0, 1fr); } }
+.project-art { position: relative; min-height: 280px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; gap: 4px; padding: 32px;
+  background: radial-gradient(ellipse at 20% 20%, #3B2A63 0%, #1A1328 65%); }
+.word { font-family: "Cinzel", Georgia, serif; font-weight: 700; color: #E8C76A; line-height: 1; letter-spacing: 0.02em; position: relative; }
+.w1 { font-size: clamp(2rem, 5.5vw, 3.5rem); animation: float 5s ease-in-out infinite; }
+.w2 { font-size: clamp(2.5rem, 7vw, 4.5rem); animation: float 5s ease-in-out -2.5s infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.spark { position: absolute; width: 6px; height: 6px; background: #F3E9D2; border-radius: 50%; box-shadow: 0 0 10px 3px rgba(232, 199, 106, 0.8); animation: twinkle 3.2s ease-in-out infinite; }
+.s1 { top: 14%; left: 62%; } .s2 { top: 28%; left: 84%; animation-delay: -1s; } .s3 { top: 70%; left: 72%; animation-delay: -2s; }
+.s4 { top: 82%; left: 18%; animation-delay: -0.5s; } .s5 { top: 12%; left: 14%; animation-delay: -1.6s; }
+@keyframes twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.2); } }
+.project-body { padding: clamp(24px, 4vw, 40px); display: grid; gap: 14px; align-content: center; min-width: 0; }
+.project-body .mono { color: #B9A6DD; }
+.project-body h3 { font-family: "Cinzel", Georgia, serif; font-size: clamp(1.75rem, 3.4vw, 2.25rem); font-weight: 700; color: #F3E9D2; line-height: 1.1; }
+.project-body p { color: #D8CCEB; }
+.project-body .open { color: #E8C76A; }
+@media (prefers-reduced-motion: reduce) { .w1, .w2, .spark { animation: none; } .project { transition: none; } .project:hover, .project:focus-visible { transform: none; } }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="nav-name" href="#top">Samantha Prajitno</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#work">Project</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <button class="toggle" id="theme-toggle" type="button" aria-label="Switch colour theme">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap hero" aria-label="Introduction">
+    <div class="hero-top">
+      <p class="mono eyebrow">Portfolio 2026 &middot; Burnaby, BC</p>
+      <h1 class="name">Samantha<br>Prajitno</h1>
+      <div class="role-wrap">
+        <div class="role">
+          <span class="handle tl"></span><span class="handle tr"></span><span class="handle bl"></span><span class="handle br"></span>
+          Graphic Designer
+        </div>
+      </div>
+      
+    </div>
+    <div class="hero-bottom">
+      <div class="cta-row">
+        <a class="btn primary" href="#work">See my project</a>
+        <a class="btn" href="#contact">Contact me</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="about-h">About me</h2><span class="mono">Burnaby, BC</span></div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm a graphic designer based in Burnaby, BC, studying Interactive Arts and Technology at Simon Fraser University.</p>
+          <p>Since 2021 I've worked on design teams making posters, banners, Instagram content and product visuals, mostly in Figma and Adobe Creative Suite. Lately I've been exploring motion design in After Effects.</p>
+        </div>
+        <dl class="facts-box">
+          <div><dt class="mono">Studying</dt><dd>Interactive Arts and Technology, Simon Fraser University</dd></div>
+          <div><dt class="mono">Languages of design</dt><dd>Social media, branding, layout, UI/UX, motion</dd></div>
+        </dl>
+      </div>
+      <div class="tools">
+        <span class="mono">Tools</span>
+        <span class="chip">Figma</span>
+        <span class="chip">After Effects</span>
+        <span class="chip">Adobe Illustrator</span>
+        <span class="chip">Photoshop</span>
+        <span class="chip">ibisPaint</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="work-h">Project</h2><span class="mono">Click the box to open</span></div>
+      <a class="project" href="wingardium-leviosa.html" target="_blank" rel="noopener" aria-label="Open the Wingardium Leviosa project in a new tab">
+        <div class="project-art" aria-hidden="true">
+          <i class="spark s1"></i><i class="spark s2"></i><i class="spark s3"></i><i class="spark s4"></i><i class="spark s5"></i>
+          <span class="word w1">Wingardium</span>
+          <span class="word w2">Leviosa</span>
+        </div>
+        <div class="project-body">
+          <p class="mono">Motion design &middot; Kinetic typography</p>
+          <h3>Wingardium Leviosa</h3>
+          <p>A kinetic typography animation of the levitation lesson from my favorite movie, built in After Effects with hand-drawn elements.</p>
+          <span class="open mono">Open project &#8599;</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  
+
+    <section class="section" id="education" aria-labelledby="edu-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="edu-h">Education</h2><span class="mono">3 schools</span></div>
+      <div class="ledger">
+        <article class="row">
+          <div><p class="when mono">Sep 2025 &ndash; Present</p></div>
+          <div>
+            <h3>Simon Fraser University</h3>
+            <p class="org">Interactive Arts and Technology (Communication, Art and Technology)</p>
+          </div>
+        </article>
+        <article class="row">
+          <div><p class="when mono">Sep 2024 &ndash; Sep 2025</p></div>
+          <div>
+            <h3>Fraser International College</h3>
+            <p class="org">Bachelor of Arts, Interactive Arts and Technology (Communication, Art and Technology)</p>
+            <ul><li>Southeast Asia Merit Scholarship, Fall 2024</li></ul>
+          </div>
+        </article>
+        <article class="row">
+          <div><p class="when mono">Graduated 2024</p></div>
+          <div>
+            <h3>SMAK 1 Penabur, Indonesia</h3>
+            <p class="org">High School Diploma</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h">Contact me.</h2>
+      <ul class="contact-list">
+        <li>
+          <span class="mono">Email</span>
+          <span class="val"><span id="email-text">samantha.prajitno@gmail.com</span><button class="copy" type="button" data-copy="samantha.prajitno@gmail.com">Copy</button></span>
+        </li>
+        <li>
+          <span class="mono">Phone</span>
+          <span class="val"><span id="phone-text">+1 (672) 699-3934</span><button class="copy" type="button" data-copy="+1 (672) 699-3934">Copy</button></span>
+        </li>
+        <li>
+          <span class="mono">LinkedIn</span>
+          <span class="val"><a href="https://samanthaprajitno.linkedin.com" target="_blank" rel="noopener">samanthaprajitno.linkedin.com</a></span>
+        </li>
+        <li>
+          <span class="mono">Based in</span>
+          <span class="val">Burnaby, BC</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <span>&copy; 2026 Samantha Prajitno</span>
+  <span>Graphic designer, Burnaby, BC</span>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function current() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  try {
+    var saved = localStorage.getItem('sp-theme');
+    if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+  } catch (e) {}
+  btn.addEventListener('click', function () {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('sp-theme', next); } catch (e) {}
+  });
+
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = b.getAttribute('data-copy');
+      var done = function () {
+        var old = b.textContent;
+        b.textContent = 'Copied';
+        setTimeout(function () { b.textContent = old; }, 1600);
+      };
+      var fallback = function () {
+        var target = b.parentNode.firstElementChild;
+        var range = document.createRange();
+        range.selectNodeContents(target);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        b.textContent = 'Selected';
+        setTimeout(function () { b.textContent = 'Copy'; }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
+})();
+</script>
+
+</body></html>
